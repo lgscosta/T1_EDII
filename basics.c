@@ -3,21 +3,27 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "selectionsort.h"
+#include "insertionsort.h"
+#include "shellsort.h"
+#include "quicksort.h"
+#include "heapsort.h"
+
 void manager(char* parameter, int* list, int N, int T){
 
     for(int i = 1; i < strlen(parameter); i++){ // Loop to read all parameters
                                                 // > it starts with 1 to ignore the '-'
         if(atoi(&parameter[i]) == 1 || atoi(&parameter[i]) == 2 || atoi(&parameter[i]) == 3){ // Only if it's a number
             switch (atoi(&parameter[i])){
-            case 1:
-                first_print(list, N, T);
-                break;
-
-            case 2:
+            case 1: // Top T
                 /* code */
                 break;
 
-            case 3:
+            case 2: // Stats
+                /* code */
+                break;
+
+            case 3: // Tabulated stats
                 /* code */
                 break;
             
@@ -27,27 +33,27 @@ void manager(char* parameter, int* list, int N, int T){
         }
         else{ // Only if it's a letter
             switch (parameter[i]){
-            case 'a':
+            case 'a': // All sorts
                 /* code */
                 break;
 
-            case 's':
+            case 's': // Selection Sort
                 /* code */
                 break;
 
-            case 'i':
+            case 'i': // Insertion Sort
                 /* code */
                 break;
 
-            case 'e':
+            case 'e': // Shell Sort
                 /* code */
                 break;
 
-            case 'q':
+            case 'q': // Quick Sort
                 /* code */
                 break;
 
-            case 'h':
+            case 'h': // Heap Sort
                 /* code */
                 break;
             

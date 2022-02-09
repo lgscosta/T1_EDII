@@ -17,8 +17,8 @@ heapsort.h
 - [x] first_print ⇾ basics.h
 - [ ] second_print ⇾ basics.h
 - [ ] third_print ⇾ basics.h
-- [ ] selection_sort ⇾ selectionsort.h
-- [ ] insertion_sort ⇾ insertionsort.h
+- [x] selection_sort ⇾ selectionsort.h
+- [x] insertion_sort ⇾ insertionsort.h
 - [ ] shell_sort ⇾ shellsort.h
 - [ ] quick_sort ⇾ quicksort.h
 - [ ] heap_sort ⇾ heapsort.h
