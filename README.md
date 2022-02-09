@@ -3,12 +3,14 @@ Luana Gabriele de Sousa Costa
 
 ## Libraries
 ### Main helper codes
+```
 basics.h
 selectionsort.h
 insertionsort.h
 shellsort.h
 quicksort.h
 heapsort.h
+```
 
 ## To do
 ### For owner's control
