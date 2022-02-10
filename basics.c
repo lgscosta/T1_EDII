@@ -10,21 +10,23 @@
 #include "heapsort.h"
 
 void manager(char* parameter, int* list, int N, int T){
+    int index[3];
+    memset(index, 0, sizeof(int));
 
     for(int i = 1; i < strlen(parameter); i++){ // Loop to read all parameters
                                                 // > it starts with 1 to ignore the '-'
         if(atoi(&parameter[i]) == 1 || atoi(&parameter[i]) == 2 || atoi(&parameter[i]) == 3){ // Only if it's a number
             switch (atoi(&parameter[i])){
             case 1: // Top T
-                /* code */
+                index[0] = 1;
                 break;
 
             case 2: // Stats
-                /* code */
+                index[1] = 1;
                 break;
 
             case 3: // Tabulated stats
-                /* code */
+                index[2] = 1;
                 break;
             
             default:
@@ -63,6 +65,18 @@ void manager(char* parameter, int* list, int N, int T){
         
         }
     
+    }
+
+    if(list[0] == 1){
+        // first_print
+    }
+
+    if(list[1] == 1){
+        // second_print
+    }
+
+    if(list[2] == 1){
+        // third_print
     }
 
 }
