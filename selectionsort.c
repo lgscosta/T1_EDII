@@ -2,13 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
   
-int* selection_sort(int* list, int N, int comparison_count, int swap_count){
+void selection_sort(int* list, int N, float* counters){
+    clock_t begin = clock();
     int minimum = 0; // Variable to do the comparison
     int swap; // Variable to do the swap process
-    
-    comparison_count = 0; // Variable to count comparisons
-    swap_count = 0; // Variable to count comparisons
+    int comparison_count = 0;
+    int swap_count = 0;
   
     for (int i = 0; i < N-1; i++){ // Loop for all positions except the last one
         minimum = i; 
@@ -28,5 +29,11 @@ int* selection_sort(int* list, int N, int comparison_count, int swap_count){
         swap_count++; // One more swap
     }
 
-    return list;
+    clock_t end = clock();
+    float time_spent = ((float)(end - begin))/CLOCKS_PER_SEC;
+
+    printf("%.4f\n", time_spent);
+    counters[0] = comparison_count;
+    counters[1] = swap_count;
+    counters[2] = time_spent;
 }

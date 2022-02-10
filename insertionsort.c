@@ -2,14 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
-int* insertion_sort(int* list, int N, int comparison_count, int swap_count){
+void insertion_sort(int* list, int N, float* counters){
+    clock_t begin = clock();
     int actual; // Variable to the actual number
     int previous; // Variable to the comparisson with the previous one
+    int comparison_count = 0;
+    int swap_count = 0;
     
-    comparison_count = 0; // Variable to count comparisons
-    swap_count = 0; // Variable to count comparisons
-
     for (int i = 1; i < N; i++){ // Loop for all positions
         actual = list[i];
         previous = i - 1;
@@ -23,10 +24,16 @@ int* insertion_sort(int* list, int N, int comparison_count, int swap_count){
             previous--; // Previous is now the pre-previous
             swap_count++;
             comparison_count++;
+
         }
         
         list[previous + 1] = actual;
     }
 
-    return list;
+    clock_t end = clock();
+    float time_spent = ((float)(end - begin))/CLOCKS_PER_SEC;
+
+    counters[0] = comparison_count;
+    counters[1] = swap_count;
+    counters[2] = time_spent;
 }

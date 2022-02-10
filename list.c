@@ -15,7 +15,7 @@ struct list{
     Cell* last;
 };
 
-List* list(){
+List* list_init(){
     List* list = (List*) malloc(sizeof(List));
     list->first = NULL;
     list->last = NULL;
@@ -35,10 +35,10 @@ void new_stats(List* list, Stats* stats){
     list->last = list->last->next = cell;
 }
 
-void print_list(List* list){
+void print_list_3(List* list){
     
     for(Cell* c = list->first; c != NULL; c = c->next){
-        print_stats((Stats*) c->item);
+        printf("[algoritmo\tarquivo\ttam.\tT(top)\tcomp.\ttrocas\ttempo(s)]\n");
     }
 }
 

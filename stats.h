@@ -5,7 +5,13 @@ typedef struct stats Stats;
 
 Stats* stats(char* sort, int comparisons, int swaps, float time);
 
-void print_stats(Stats* stats);
+char* return_sort(Stats* stats);
+
+int return_comparisons(Stats* stats);
+
+int return_swaps(Stats* stats);
+
+float return_time(Stats* stats);
 
 void free_stats(Stats* stats);
 

@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
     }
 
     // READING FUNCTIONS
-    manager(argv[1], list, N, T);
+    manager(argv[1], list, N, T, argv[3]);
 
     // FREE
     free(list);

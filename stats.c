@@ -20,9 +20,22 @@ Stats* stats(char* sort, int comparisons, int swaps, float time){
     return stats;
 }
 
-void print_stats(Stats* stats){
-    printf("%i  %i  %.4f", stats->comparisons, stats->swaps, stats->time);
+char* return_sort(Stats* stats){
+    return stats->sort;
 }
+
+int return_comparisons(Stats* stats){
+    return stats->comparisons;
+}
+
+int return_swaps(Stats* stats){
+    return stats->swaps;
+}
+
+float return_time(Stats* stats){
+    return stats->time;
+}
+
 
 void free_stats(Stats* stats){
     free(stats->sort);
