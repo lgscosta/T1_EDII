@@ -2,51 +2,61 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
-void swap(int* a, int* b){
-    int t = *a;
-    *a = *b;
-    *b = t;
-}
+void quick_sort(int* list, int first, int last, float* counters){
+    clock_t begin = clock();
+    int comparison_count = 0;
+    int swap_count = 0;
+    int buffer[last - first + 1]; // Auxiliary buffer
+    int top = -1; // Variable to control the top of the buffer
+    int swap;
  
-/* This function takes last element as pivot, places
-the pivot element at its correct position in sorted
-array, and places all smaller (smaller than pivot)
-to left of pivot and all greater elements to right
-of pivot */
-int partition (int arr[], int low, int high)
-{
-    int pivot = arr[high]; // pivot
-    int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
+    buffer[++top] = first; // buffer[0]
+    buffer[++top] = last; // buffer[1]
  
-    for (int j = low; j <= high - 1; j++)
-    {
-        // If current element is smaller than the pivot
-        if (arr[j] < pivot)
-        {
-            i++; // increment index of smaller element
-            swap(&arr[i], &arr[j]);
+    while (top >= 0){ // Not empty
+        last = buffer[top--];
+        first = buffer[top--];
+
+        int ending = list[last];
+        int previous = (first - 1);
+        int aux;
+    
+        for (int i = first; i <= last - 1; i++) {
+            if (list[i] <= ending){
+                comparison_count++;
+                previous++;
+
+                swap_count++;
+                aux = list[previous];
+                list[previous] = list[i];
+                list[i] = aux;
+            }
+        }
+
+        swap_count++;
+        aux = list[previous + 1];
+        list[previous + 1] = list[last];
+        list[last] = aux;
+
+        swap = previous + 1;
+
+        if (swap - 1 > first){
+            buffer[++top] = first;
+            buffer[++top] = swap - 1;
+        }
+
+        if (swap + 1 < last){
+            buffer[++top] = swap + 1;
+            buffer[++top] = last;
         }
     }
-    swap(&arr[i + 1], &arr[high]);
-    return (i + 1);
-}
- 
-/* The main function that implements QuickSort
-arr[] --> Array to be sorted,
-low --> Starting index,
-high --> Ending index */
-void quickSort(int arr[], int low, int high)
-{
-    if (low < high)
-    {
-        /* pi is partitioning index, arr[p] is now
-        at right place */
-        int pi = partition(arr, low, high);
- 
-        // Separately sort elements before
-        // partition and after partition
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
+
+    clock_t end = clock();
+    float time_spent = ((float)(end - begin))/CLOCKS_PER_SEC;
+
+    counters[0] = comparison_count;
+    counters[1] = swap_count;
+    counters[2] = time_spent;
 }

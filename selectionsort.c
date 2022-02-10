@@ -32,7 +32,6 @@ void selection_sort(int* list, int N, float* counters){
     clock_t end = clock();
     float time_spent = ((float)(end - begin))/CLOCKS_PER_SEC;
 
-    printf("%.4f\n", time_spent);
     counters[0] = comparison_count;
     counters[1] = swap_count;
     counters[2] = time_spent;

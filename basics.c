@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "selectionsort.h"
 #include "insertionsort.h"
@@ -18,6 +19,8 @@ void manager(char* parameter, int* list, int N, int T, char* path_name){
     int swap_count = 0; // Variable to count swaps
     float time;
     char algorithm;
+    clock_t begin;
+    clock_t end;
 
     int there_is_an_a = 0;
 
@@ -71,7 +74,10 @@ void manager(char* parameter, int* list, int N, int T, char* path_name){
             break;
 
         case 'q': // Quick Sort
-            /* code */
+            quick_sort(list, 0, N-1, counters);
+            comparison_count = counters[0];
+            swap_count = counters[1];
+            time = counters[2];
 
             algorithm = 'q';
             break;
@@ -141,7 +147,7 @@ void third_print_single(char algorithm, char* path, int N, int T, int comparison
         printf("Shell\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, comparisons, swaps, time);
         break;
     case 'q':
-        printf("Quick\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, comparisons, swaps, time);
+        printf("Quick\t\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, comparisons, swaps, time);
         break;
     case 'h':
         printf("Heap\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, comparisons, swaps, time);
