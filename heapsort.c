@@ -3,43 +3,54 @@
 #include <stdlib.h>
 #include <string.h>
 
-void heapify(int arr[], int n, int i)
-{
-    int largest = i; // Initialize largest as root
-    int l = 2 * i + 1; // left = 2*i + 1
-    int r = 2 * i + 2; // right = 2*i + 2
- 
+void heap(int* list, int N, int actual, int comparison_count, int swap_count){
+    int largest = actual; // Initialize largest as root
+    int left = (2*actual + 1);
+    int right = (2*actual + 2);
+    int aux;
+
     // If left child is larger than root
-    if (l < n && arr[l] > arr[largest])
-        largest = l;
- 
+    if (left < N && list[left] > list[largest]){
+        comparison_count++;
+        largest = left;
+    }
+
     // If right child is larger than largest so far
-    if (r < n && arr[r] > arr[largest])
-        largest = r;
- 
+    if (right < N && list[right] > list[largest]){
+        comparison_count++;
+        largest = right;
+    }
+
     // If largest is not root
-    if (largest != i) {
-        // swap(arr[i], arr[largest]);
- 
-        // Recursively heapify the affected sub-tree
-        heapify(arr, n, largest);
+    if (largest != actual){
+        swap_count++;
+        aux = list[actual];
+        list[actual] = list[largest];
+        list[largest] = aux;
+
+        // Recursively heap the affected sub-tree
+        heap(list, N, largest, comparison_count, swap_count);
     }
 }
- 
+
 // main function to do heap sort
-void heapSort(int arr[], int n)
-{
+void heap_sort(int* list, int N, float* counters){
+    int aux;
+    int comparison_count = 0;
+    int swap_count = 0;
+
     // Build heap (rearrange array)
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapify(arr, n, i);
- 
+    for (int i = (N/2)-1; i >= 0; i--){
+        heap(list, N, i, comparison_count, swap_count);
+    }
+
     // One by one extract an element from heap
-    for (int i = n - 1; i > 0; i--) {
-        // Move current root to end
-        // swap(arr[0], arr[i]);
- 
-        // call max heapify on the reduced heap
-        heapify(arr, i, 0);
+    for (int i = N-1; i > 0; i--){
+        swap_count++;
+        aux = list[0];
+        list[0] = list[i];
+        list[i] = aux;
+
+        heap(list, i, 0, comparison_count, swap_count);
     }
 }
- 

@@ -1,6 +1,6 @@
 #ifndef heap_h_
 #define heap_h_
 
-int* heap_sort(int*, int);
+void heap_sort(int* arr, int n, float* counters);
 
 #endif /* heap_h_ */
