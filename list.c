@@ -35,11 +35,42 @@ void new_stats(List* list, Stats* stats){
     list->last = list->last->next = cell;
 }
 
-void print_list_3(List* list){
+void print_list_second(List* list){
+    for(Cell* c = list->first; c != NULL; c = c->next){
+        printf("Tempo de CPU:\t%.4f segundos\nComparações:\t%i\nTrocas:\t\t%i\n", return_time(c->item), return_comparisons(c->item), return_swaps(c->item));
+        puts("\n");
+    }
+}
+
+void print_list_third(List* list, char* path, int N, int T){
     
     for(Cell* c = list->first; c != NULL; c = c->next){
         printf("[algoritmo\tarquivo\ttam.\tT(top)\tcomp.\ttrocas\ttempo(s)]\n");
+
+    switch (return_sort(c->item)){
+        case 's':
+            printf("Selection\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, return_comparisons(c->item), return_swaps(c->item), return_time(c->item));
+            break;
+        case 'i':
+            printf("Insertion\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, return_comparisons(c->item), return_swaps(c->item), return_time(c->item));
+            break;
+        case 'e':
+            printf("Shell\t\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, return_comparisons(c->item), return_swaps(c->item), return_time(c->item));
+            break;
+        case 'q':
+            printf("Quick\t\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, return_comparisons(c->item), return_swaps(c->item), return_time(c->item));
+            break;
+        case 'h':
+            printf("Heap\t\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, return_comparisons(c->item), return_swaps(c->item), return_time(c->item));
+            break;
+        
+        default:
+            break;
+        }
+        
+        puts("\n");
     }
+
 }
 
 void free_list(List* list){

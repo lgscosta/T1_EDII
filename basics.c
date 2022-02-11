@@ -19,8 +19,7 @@ void manager(char* parameter, int* list, int N, int T, char* path_name){
     int swap_count = 0; // Variable to count swaps
     float time;
     char algorithm;
-    clock_t begin;
-    clock_t end;
+    List* sorts = list_init();
 
     int there_is_an_a = 0;
 
@@ -46,7 +45,32 @@ void manager(char* parameter, int* list, int N, int T, char* path_name){
         
         case 'a': // All sorts
             there_is_an_a = 1;
-            /* code */
+
+            // Selection 
+            selection_sort(list, N, counters);
+            Stats* selection = stats('s', counters[0], counters[1], counters[2]);
+            new_stats(sorts, selection);
+
+            // Insertion 
+            insertion_sort(list, N, counters);
+            Stats* insertion = stats('i', counters[0], counters[1], counters[2]);
+            new_stats(sorts, selection);
+
+            // Shell 
+            shell_sort(list, N, counters);
+            Stats* shell = stats('e', counters[0], counters[1], counters[2]);
+            new_stats(sorts, shell);
+
+            // Quick 
+            quick_sort(list, 0, N-1, counters);
+            Stats* quick = stats('q', counters[0], counters[1], counters[2]);
+            new_stats(sorts, quick);
+
+            // Heap 
+            heap_sort(list, N, counters);
+            Stats* heap = stats('h', counters[0], counters[1], counters[2]);
+            new_stats(sorts, heap);
+
             break;
 
         case 's': // Selection Sort
@@ -101,11 +125,11 @@ void manager(char* parameter, int* list, int N, int T, char* path_name){
     
     }
 
-    if(there_is_an_a == 0){
-        if(index[0] == 1){
-            first_print_single(list, N, T);
-        }
+    if(index[0] == 1){
+        first_print_single(list, N, T);
+    }
 
+    if(there_is_an_a == 0){
         if(index[1] == 1){
             second_print_single(time, comparison_count, swap_count);
         }
@@ -114,7 +138,18 @@ void manager(char* parameter, int* list, int N, int T, char* path_name){
             third_print_single(algorithm, path_name, N, T, comparison_count, swap_count, time);
         }
     }
+    else{
+        if(index[1] == 1){
+            print_list_second(sorts);
+        }
 
+        if(index[2] == 1){
+            print_list_third(sorts, path_name, N, T);
+        }
+
+    }
+
+    free_list(sorts);
 }
 
 void first_print_single(int* list, int N, int T){

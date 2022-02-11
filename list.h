@@ -7,7 +7,8 @@ typedef struct list List;
 
 List* list_init();
 void new_stats(List* list, Stats* stats);
-void print_list_3(List* list);
+void print_list_second(List* list);
+void print_list_third(List* list, char* path, int N, int T);
 void free_list(List* list);
 
 #endif /* list_h_ */
