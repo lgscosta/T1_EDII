@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 void heap(int* list, int N, int actual, int comparison_count, int swap_count){
     int largest = actual; // Initialize largest as root
@@ -23,6 +24,7 @@ void heap(int* list, int N, int actual, int comparison_count, int swap_count){
 
     // If largest is not root
     if (largest != actual){
+        comparison_count++;
         swap_count++;
         aux = list[actual];
         list[actual] = list[largest];
@@ -35,6 +37,7 @@ void heap(int* list, int N, int actual, int comparison_count, int swap_count){
 
 // main function to do heap sort
 void heap_sort(int* list, int N, float* counters){
+    clock_t begin = clock();
     int aux;
     int comparison_count = 0;
     int swap_count = 0;
@@ -53,4 +56,11 @@ void heap_sort(int* list, int N, float* counters){
 
         heap(list, i, 0, comparison_count, swap_count);
     }
+
+    clock_t end = clock();
+    float time_spent = ((float)(end - begin))/CLOCKS_PER_SEC;
+
+    counters[0] = comparison_count;
+    counters[1] = swap_count;
+    counters[2] = time_spent;
 }

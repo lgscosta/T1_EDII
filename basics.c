@@ -68,7 +68,10 @@ void manager(char* parameter, int* list, int N, int T, char* path_name){
             break;
 
         case 'e': // Shell Sort
-            /* code */
+            shell_sort(list, N, counters);
+            comparison_count = counters[0];
+            swap_count = counters[1];
+            time = counters[2];
 
             algorithm = 'e';
             break;
@@ -147,7 +150,7 @@ void third_print_single(char algorithm, char* path, int N, int T, int comparison
         printf("Insertion\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, comparisons, swaps, time);
         break;
     case 'e':
-        printf("Shell\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, comparisons, swaps, time);
+        printf("Shell\t\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, comparisons, swaps, time);
         break;
     case 'q':
         printf("Quick\t\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, comparisons, swaps, time);
