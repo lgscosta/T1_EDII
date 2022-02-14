@@ -9,7 +9,7 @@ struct stats{
 };
 
 Stats* stats(char sort, int comparisons, int swaps, float time){
-    Stats* stats = (Stats*) malloc(sizeof(Stats));
+    Stats* stats = (Stats*) malloc(sizeof(Stats)); // Allocate the stats
     stats->sort = sort;
     stats->counters[0] = comparisons;
     stats->counters[1] = swaps;

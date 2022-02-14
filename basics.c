@@ -54,7 +54,7 @@ void manager(char* parameter, int* list, int N, int T, char* path_name){
             // Insertion 
             insertion_sort(list, N, counters);
             Stats* insertion = stats('i', counters[0], counters[1], counters[2]);
-            new_stats(sorts, selection);
+            new_stats(sorts, insertion);
 
             // Shell 
             shell_sort(list, N, counters);
@@ -125,11 +125,11 @@ void manager(char* parameter, int* list, int N, int T, char* path_name){
     
     }
 
-    if(index[0] == 1){
+    if(index[0] == 1){ // This goes to all cases, even 'a'
         first_print_single(list, N, T);
     }
 
-    if(there_is_an_a == 0){
+    if(there_is_an_a == 0){ // This goes to all cases, except 'a'
         if(index[1] == 1){
             second_print_single(time, comparison_count, swap_count);
         }
@@ -138,7 +138,7 @@ void manager(char* parameter, int* list, int N, int T, char* path_name){
             third_print_single(algorithm, path_name, N, T, comparison_count, swap_count, time);
         }
     }
-    else{
+    else{ // This goes only to 'a'
         if(index[1] == 1){
             print_list_second(sorts);
         }
@@ -168,10 +168,12 @@ void first_print_single(int* list, int N, int T){
         }
     }
 
+    puts("\n");
 }
 
 void second_print_single(float time, int comparisons, int swaps){
     printf("Tempo de CPU:\t%.4f segundos\nComparações:\t%i\nTrocas:\t\t%i\n", time, comparisons, swaps);
+    puts("\n");
 }
 
 void third_print_single(char algorithm, char* path, int N, int T, int comparisons, int swaps, float time){
@@ -197,4 +199,6 @@ void third_print_single(char algorithm, char* path, int N, int T, int comparison
     default:
         break;
     }
+
+    puts("\n");
 }

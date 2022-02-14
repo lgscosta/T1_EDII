@@ -5,7 +5,7 @@
 #include <time.h>
 
 void shell_sort(int *list, int N, float* counters){
-    clock_t begin = clock();
+    clock_t begin = clock(); // Starts the clock
     int actual; 
     int value;
     int key = 1;
@@ -18,8 +18,8 @@ void shell_sort(int *list, int N, float* counters){
 
     while(key > 0){
         for(int i = key; i < N; i++){
-            value = list[i];
-            actual = i;
+            value = list[i]; // The actual value
+            actual = i; // The actual index
 
             while (actual > key-1 && value <= list[actual - key]) {
                 comparison_count++;
@@ -34,11 +34,10 @@ void shell_sort(int *list, int N, float* counters){
         key = key/3;
     }
 
-    clock_t end = clock();
-    float time_spent = ((float)(end - begin))/CLOCKS_PER_SEC;
+    clock_t end = clock(); // Finishes the clock
+    float time_spent = ((float)(end - begin))/CLOCKS_PER_SEC; // Calculate on seconds
 
-    printf("==%.4f==\n", time_spent);
-
+    // To return 
     counters[0] = comparison_count;
     counters[1] = swap_count;
     counters[2] = time_spent;

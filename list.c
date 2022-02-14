@@ -4,6 +4,7 @@
 #include "stats.h"
 #include "list.h"
 
+// The cell tipe for the list 
 typedef struct cell Cell;
 struct cell{
     void* item;
@@ -24,15 +25,16 @@ List* list_init(){
 }
 
 void new_stats(List* list, Stats* stats){
-    Cell* cell = (Cell*) malloc(sizeof(Cell));
-    cell->item = stats;
-    cell->next = NULL;
+    Cell* cell = (Cell*) malloc(sizeof(Cell)); // Initialize the cell
+    cell->item = stats; // Fill the cell
+    cell->next = NULL; // Fill the cell
 
+    // Putting on the list
     if(list->first == NULL){
-        list->first = list->last = cell;
+        list->first = list->last = cell; // The only element of the list
     }
 
-    list->last = list->last->next = cell;
+    list->last = list->last->next = cell; // Putting on the last position
 }
 
 void print_list_second(List* list){
@@ -48,19 +50,19 @@ void print_list_third(List* list, char* path, int N, int T){
         printf("[algoritmo\tarquivo\ttam.\tT(top)\tcomp.\ttrocas\ttempo(s)]\n");
 
     switch (return_sort(c->item)){
-        case 's':
+        case 's': // Selection sort
             printf("Selection\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, return_comparisons(c->item), return_swaps(c->item), return_time(c->item));
             break;
-        case 'i':
+        case 'i': // Insertion sort
             printf("Insertion\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, return_comparisons(c->item), return_swaps(c->item), return_time(c->item));
             break;
-        case 'e':
+        case 'e': // Shell sort
             printf("Shell\t\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, return_comparisons(c->item), return_swaps(c->item), return_time(c->item));
             break;
-        case 'q':
+        case 'q': // Quick sort
             printf("Quick\t\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, return_comparisons(c->item), return_swaps(c->item), return_time(c->item));
             break;
-        case 'h':
+        case 'h': // Heap sort
             printf("Heap\t\t%s\t%i\t%i\t%i\t%i\t%.4f\n", path, N, T, return_comparisons(c->item), return_swaps(c->item), return_time(c->item));
             break;
         
@@ -74,7 +76,7 @@ void print_list_third(List* list, char* path, int N, int T){
 }
 
 void free_list(List* list){
-    Cell* cell = list->first;
+    Cell* cell = list->first; // Auxiliary cell
     Cell* aux;
 
     while(cell != NULL){

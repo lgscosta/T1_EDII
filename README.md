@@ -21,8 +21,11 @@ heapsort.h
 - [x] insertion_sort ⇾ insertionsort.h
 - [x] shell_sort ⇾ shellsort.h
 - [x] quick_sort ⇾ quicksort.h
-- [ ] heap_sort ⇾ heapsort.h
-- [ ] comments
+- [x] heap_sort ⇾ heapsort.h
+- [x] comments
+- [x] makefile
+- [ ] tests
+- [ ] report
 
 ### Fun facts
 - The ```-a``` flag will sort with the selection sort and then the other sortes will sort a already sorted list

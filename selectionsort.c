@@ -5,7 +5,7 @@
 #include <time.h>
   
 void selection_sort(int* list, int N, float* counters){
-    clock_t begin = clock();
+    clock_t begin = clock(); // Starts the clock
     int minimum = 0; // Variable to do the comparison
     int swap; // Variable to do the swap process
     int comparison_count = 0;
@@ -29,9 +29,10 @@ void selection_sort(int* list, int N, float* counters){
         swap_count++; // One more swap
     }
 
-    clock_t end = clock();
-    float time_spent = ((float)(end - begin))/CLOCKS_PER_SEC;
+    clock_t end = clock(); // Finishes the clock
+    float time_spent = ((float)(end - begin))/CLOCKS_PER_SEC; // Calculate on seconds
 
+    // To return 
     counters[0] = comparison_count;
     counters[1] = swap_count;
     counters[2] = time_spent;
